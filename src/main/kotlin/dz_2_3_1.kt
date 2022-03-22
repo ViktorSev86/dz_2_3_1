@@ -55,7 +55,13 @@ data class Post(
     val markedAsAds: Boolean,
     val isFavorite: Boolean,
     val donut: Donut,
-    val postponedId: Int
+    val postponedId: Int,
+
+    val postSource: Object?,
+    val geo: Geo,
+    val copyHistory: Array<Object>?
+
+
 ) {
     data class Comments(
         val count: Int,
@@ -99,4 +105,10 @@ data class Post(
             val text: String
         )
     }
+
+    data class Geo (
+        val type: String,
+        val coordinates: String,
+        val place: Object?
+            )
 }

@@ -19,23 +19,27 @@ class WallServiceTest {
         val donut1 = Post.Donut(false, 200, placeholder, false, "duration")
         val donut2 = Post.Donut(true, 100, placeholder, true, "all")
 
+        val geo1 = Post.Geo("town", "32.36, 25.45", null)
+        val geo2 = Post.Geo("sea", "45.00, 32.12", null)
+
+
         val service = WallService
 
         service.add(Post(0, 3535, 4444, 8989, 456567788, "Текст поста 1",
             5555, 6767, false, comments1, copiright1, likes1, reposts1, views1,
             "post", 3456, false, false, false, false, false,
-            false, donut1, 3456
+            false, donut1, 3456, null, geo1, null
         ))
         service.add(Post(0, 4567, 3567, 4356, 345678956, "Текст поста 2",
             4567, 5467, true, comments2, copiright2, likes2, reposts2, views2,
             "copy", 9876, true, true, true, true, true,
-            true, donut2, 4567
+            true, donut2, 4567, null, geo2, null
         ))
 
         val update = Post(1, 3535, 4444, 8989, 456567788, "Текст поста 1",
             5555, 6767, false, comments1, copiright1, likes1, reposts1, views1,
             "post", 3456, false, false, false, false, false,
-            false, donut1, 3456)
+            false, donut1, 3456, null, geo1, null)
 
         val result = service.update(update)
 
@@ -59,23 +63,27 @@ class WallServiceTest {
         val donut1 = Post.Donut(false, 200, placeholder, false, "duration")
         val donut2 = Post.Donut(true, 100, placeholder, true, "all")
 
+        val geo1 = Post.Geo("town", "32.36, 25.45", null)
+        val geo2 = Post.Geo("sea", "45.00, 32.12", null)
+
+
         val service = WallService
 
         service.add(Post(0, 3535, 4444, 8989, 456567788, "Текст поста 1",
             5555, 6767, false, comments1, copiright1, likes1, reposts1, views1,
             "post", 3456, false, false, false, false, false,
-            false, donut1, 3456
+            false, donut1, 3456, null, geo1, null
         ))
         service.add(Post(0, 4567, 3567, 4356, 345678956, "Текст поста 2",
             4567, 5467, true, comments2, copiright2, likes2, reposts2, views2,
             "copy", 9876, true, true, true, true, true,
-            true, donut2, 4467
+            true, donut2, 4467, null, geo2, null
         ))
 
         val update = Post(2, 3535, 4444, 8989, 456567788, "Текст поста 1",
             5555, 6767, false, comments1, copiright1, likes1, reposts1, views1,
             "post", 3456, false, false, false, false, false,
-            false, donut1, 3456)
+            false, donut1, 3456, null, geo1, null)
 
         val result = service.update(update)
 
@@ -99,23 +107,27 @@ class WallServiceTest {
         val donut1 = Post.Donut(false, 200, placeholder, false, "duration")
         val donut2 = Post.Donut(true, 100, placeholder, true, "all")
 
+        val geo1 = Post.Geo("town", "32.36, 25.45", null)
+        val geo2 = Post.Geo("sea", "45.00, 32.12", null)
+
+
         val service = WallService
 
         service.add(Post(0, 3535, 4444, 8989, 456567788, "Текст поста 1",
             5555, 6767, false, comments1, copiright1, likes1, reposts1, views1,
             "post", 3456, false, false, false, false, false,
-            false, donut1, 3456
+            false, donut1, 3456, null, geo1, null
         ))
         service.add(Post(0, 4567, 3567, 4356, 345678956, "Текст поста 2",
             4567, 5467, true, comments2, copiright2, likes2, reposts2, views2,
             "copy", 9876, true, true, true, true, true,
-            true, donut2, 4567
+            true, donut2, 4567, null, geo2, null
         ))
 
         val update = Post(1, 3535, 4444, 8989, 456567788, "Текст поста 1",
             5555, 6767, false, comments1, copiright1, likes1, reposts1, views1,
             "post", 3456, false, false, false, false, false,
-            false, donut1, 3456)
+            false, donut1, 3456, null, geo1, null)
 
         val result = service.update(update)
 
