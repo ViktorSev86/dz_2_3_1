@@ -59,7 +59,9 @@ data class Post(
 
     val postSource: Object?,
     val geo: Geo,
-    val copyHistory: Array<Object>?
+    val copyHistory: Array<Object>?,
+
+    val attachments: Array<Attachment>
 
 
 ) {
@@ -106,9 +108,80 @@ data class Post(
         )
     }
 
-    data class Geo (
+    data class Geo(
         val type: String,
         val coordinates: String,
         val place: Object?
-            )
+    )
+
+    interface Attachment {
+        val id: Int
+        val albumId: Int
+        val ownerId: Int
+        val userId: Int
+
+        fun infoAsFun() = "ID: $id, album: $albumId, owner: $ownerId, user: $userId"
+    }
+
+    class VideoAttachment(
+        override val id: Int,
+        override val albumId: Int,
+        override val ownerId: Int,
+        override val userId: Int,
+        val filmName: String,
+        val director: String,
+        val year: Int
+    ) : Attachment {
+        override fun infoAsFun(): String {
+            return super.infoAsFun() + ", film: $filmName, director: $director, year: $year"
+        }
+    }
+
+    class AudioAttachment(
+        override val id: Int,
+        override val albumId: Int,
+        override val ownerId: Int,
+        override val userId: Int,
+        val songName: String,
+        val singer: String,
+        val composer: String,
+        val poet: String
+    ) : Attachment {
+        override fun infoAsFun(): String {
+            return super.infoAsFun() + ", song: $songName, singer: $singer, composer: $composer, poet: $poet"
+        }
+    }
+
+    class PhotoAttachment(
+        override val id: Int,
+        override val albumId: Int,
+        override val ownerId: Int,
+        override val userId: Int
+    ) : Attachment
+
+    class JournalAttachment(
+        override val id: Int,
+        override val albumId: Int,
+        override val ownerId: Int,
+        override val userId: Int,
+        val journalName: String,
+        val date: String
+    ) : Attachment {
+        override fun infoAsFun(): String {
+            return super.infoAsFun() + ", journal: $journalName, date: $date"
+        }
+    }
+
+    class BookAttachment(
+        override val id: Int,
+        override val albumId: Int,
+        override val ownerId: Int,
+        override val userId: Int,
+        val author: String,
+        val bookName: String,
+    ) : Attachment {
+        override fun infoAsFun(): String {
+            return super.infoAsFun() + ", author: $author, book: $bookName"
+        }
+    }
 }

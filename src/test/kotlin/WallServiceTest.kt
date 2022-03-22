@@ -22,24 +22,35 @@ class WallServiceTest {
         val geo1 = Post.Geo("town", "32.36, 25.45", null)
         val geo2 = Post.Geo("sea", "45.00, 32.12", null)
 
+        val film1: Post.Attachment = Post.VideoAttachment(12, 10, 111, 235,
+            "Kill Bill", "Tarantino", 2003);
+        val film2: Post.Attachment = Post.VideoAttachment(115, 23, 1023, 11,
+            "Limit Less", "Neil Burger", 2011);
+        val photo1: Post.Attachment = Post.PhotoAttachment(234, 345, 446, 5678)
+        val photo2: Post.Attachment = Post.PhotoAttachment(3455, 12, 2, 333)
+        val song1: Post.Attachment = Post.AudioAttachment(3434, 56, 345345, 453554,
+            "Smoke on the water", "Deep Purple", "All group", "All group")
+
+        var attachments1: Array<Post.Attachment> = Array(3) {film1; photo1; song1};
+        var attachments2: Array<Post.Attachment> = Array(5) {film1; film2; photo1; photo2; song1};
 
         val service = WallService
 
         service.add(Post(0, 3535, 4444, 8989, 456567788, "Текст поста 1",
             5555, 6767, false, comments1, copiright1, likes1, reposts1, views1,
             "post", 3456, false, false, false, false, false,
-            false, donut1, 3456, null, geo1, null
+            false, donut1, 3456, null, geo1, null, attachments1
         ))
         service.add(Post(0, 4567, 3567, 4356, 345678956, "Текст поста 2",
             4567, 5467, true, comments2, copiright2, likes2, reposts2, views2,
             "copy", 9876, true, true, true, true, true,
-            true, donut2, 4567, null, geo2, null
+            true, donut2, 4567, null, geo2, null, attachments2
         ))
 
         val update = Post(1, 3535, 4444, 8989, 456567788, "Текст поста 1",
             5555, 6767, false, comments1, copiright1, likes1, reposts1, views1,
             "post", 3456, false, false, false, false, false,
-            false, donut1, 3456, null, geo1, null)
+            false, donut1, 3456, null, geo1, null, attachments1)
 
         val result = service.update(update)
 
@@ -66,24 +77,36 @@ class WallServiceTest {
         val geo1 = Post.Geo("town", "32.36, 25.45", null)
         val geo2 = Post.Geo("sea", "45.00, 32.12", null)
 
+        val film1: Post.Attachment = Post.VideoAttachment(12, 10, 111, 235,
+            "Kill Bill", "Tarantino", 2003);
+        val film2: Post.Attachment = Post.VideoAttachment(115, 23, 1023, 11,
+            "Limit Less", "Neil Burger", 2011);
+        val photo1: Post.Attachment = Post.PhotoAttachment(234, 345, 446, 5678)
+        val photo2: Post.Attachment = Post.PhotoAttachment(3455, 12, 2, 333)
+        val song1: Post.Attachment = Post.AudioAttachment(3434, 56, 345345, 453554,
+            "Smoke on the water", "Deep Purple", "All group", "All group")
+
+        var attachments1: Array<Post.Attachment> = Array(3) {film1; photo1; song1};
+        var attachments2: Array<Post.Attachment> = Array(5) {film1; film2; photo1; photo2; song1};
+
 
         val service = WallService
 
         service.add(Post(0, 3535, 4444, 8989, 456567788, "Текст поста 1",
             5555, 6767, false, comments1, copiright1, likes1, reposts1, views1,
             "post", 3456, false, false, false, false, false,
-            false, donut1, 3456, null, geo1, null
+            false, donut1, 3456, null, geo1, null, attachments1
         ))
         service.add(Post(0, 4567, 3567, 4356, 345678956, "Текст поста 2",
             4567, 5467, true, comments2, copiright2, likes2, reposts2, views2,
             "copy", 9876, true, true, true, true, true,
-            true, donut2, 4467, null, geo2, null
+            true, donut2, 4467, null, geo2, null, attachments2
         ))
 
         val update = Post(2, 3535, 4444, 8989, 456567788, "Текст поста 1",
             5555, 6767, false, comments1, copiright1, likes1, reposts1, views1,
             "post", 3456, false, false, false, false, false,
-            false, donut1, 3456, null, geo1, null)
+            false, donut1, 3456, null, geo1, null, attachments1)
 
         val result = service.update(update)
 
@@ -110,24 +133,36 @@ class WallServiceTest {
         val geo1 = Post.Geo("town", "32.36, 25.45", null)
         val geo2 = Post.Geo("sea", "45.00, 32.12", null)
 
+        val film1: Post.Attachment = Post.VideoAttachment(12, 10, 111, 235,
+            "Kill Bill", "Tarantino", 2003);
+        val film2: Post.Attachment = Post.VideoAttachment(115, 23, 1023, 11,
+            "Limit Less", "Neil Burger", 2011);
+        val photo1: Post.Attachment = Post.PhotoAttachment(234, 345, 446, 5678)
+        val photo2: Post.Attachment = Post.PhotoAttachment(3455, 12, 2, 333)
+        val song1: Post.Attachment = Post.AudioAttachment(3434, 56, 345345, 453554,
+            "Smoke on the water", "Deep Purple", "All group", "All group")
+
+        var attachments1: Array<Post.Attachment> = Array(3) {film1; photo1; song1};
+        var attachments2: Array<Post.Attachment> = Array(5) {film1; film2; photo1; photo2; song1};
+
 
         val service = WallService
 
         service.add(Post(0, 3535, 4444, 8989, 456567788, "Текст поста 1",
             5555, 6767, false, comments1, copiright1, likes1, reposts1, views1,
             "post", 3456, false, false, false, false, false,
-            false, donut1, 3456, null, geo1, null
+            false, donut1, 3456, null, geo1, null, attachments1
         ))
         service.add(Post(0, 4567, 3567, 4356, 345678956, "Текст поста 2",
             4567, 5467, true, comments2, copiright2, likes2, reposts2, views2,
             "copy", 9876, true, true, true, true, true,
-            true, donut2, 4567, null, geo2, null
+            true, donut2, 4567, null, geo2, null, attachments2
         ))
 
         val update = Post(1, 3535, 4444, 8989, 456567788, "Текст поста 1",
             5555, 6767, false, comments1, copiright1, likes1, reposts1, views1,
             "post", 3456, false, false, false, false, false,
-            false, donut1, 3456, null, geo1, null)
+            false, donut1, 3456, null, geo1, null, attachments1)
 
         val result = service.update(update)
 
