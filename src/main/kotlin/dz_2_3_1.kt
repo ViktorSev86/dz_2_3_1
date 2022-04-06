@@ -61,7 +61,7 @@ data class Post(
     val geo: Geo,
     val copyHistory: Array<Object>?,
 
-    val attachments: Array<Attachment>
+    val attachments: Array<Attachment>?
 
 
 ) {
@@ -114,74 +114,93 @@ data class Post(
         val place: Object?
     )
 
-    interface Attachment {
-        val id: Int
-        val albumId: Int
-        val ownerId: Int
-        val userId: Int
+    sealed interface Attachment
 
-        fun infoAsFun() = "ID: $id, album: $albumId, owner: $ownerId, user: $userId"
-    }
+    sealed class Type : Attachment {
+        class Video(
+            val id: Int,
+            val ownerId: Int,
+            val title: String,
+            val description: String,
+            val duration: Int,
+            val image: () -> Unit = {
+                val height: Int
+                val url: String
+                val width: Int
+                val withPadding: Int = 1
+            },
+            val firstName: () -> Unit = {
+                val height: Int
+                val url: String
+                val width: Int
+                val withPadding: Int = 1
+            },
+            val date: Integer
+            // остальные поля не включил
+        ) : Type()
 
-    class VideoAttachment(
-        override val id: Int,
-        override val albumId: Int,
-        override val ownerId: Int,
-        override val userId: Int,
-        val filmName: String,
-        val director: String,
-        val year: Int
-    ) : Attachment {
-        override fun infoAsFun(): String {
-            return super.infoAsFun() + ", film: $filmName, director: $director, year: $year"
-        }
-    }
+        class Audio(
+            val id: Int,
+            val ownerId: Int,
+            val artist: String,
+            val title: String,
+            val duration: Int,
+            val url: String
+            // остальные поля не включил
+        ) : Type()
 
-    class AudioAttachment(
-        override val id: Int,
-        override val albumId: Int,
-        override val ownerId: Int,
-        override val userId: Int,
-        val songName: String,
-        val singer: String,
-        val composer: String,
-        val poet: String
-    ) : Attachment {
-        override fun infoAsFun(): String {
-            return super.infoAsFun() + ", song: $songName, singer: $singer, composer: $composer, poet: $poet"
-        }
-    }
+        class Photo(
+            val id: Int,
+            val albumId: Int,
+            val ownerId: Int,
+            val userId: Int,
+            val text: String,
+            val date: Integer,
+            val sizes: () -> Unit = {
+                val typeC: String
+                val url: String
+                val width: Int
+                val height: Int
+            },
+            val widthZ: Int,
+            val heightZ: Int
+        ) : Type()
 
-    class PhotoAttachment(
-        override val id: Int,
-        override val albumId: Int,
-        override val ownerId: Int,
-        override val userId: Int
-    ) : Attachment
+        class Doc(
+            val id: Int,
+            val ownerId: Int,
+            val title: String,
+            val size: Int,
+            val ext: String,
+            val utl: String,
+            val date: Int,
+            val fType: String
+        ) : Type()
 
-    class JournalAttachment(
-        override val id: Int,
-        override val albumId: Int,
-        override val ownerId: Int,
-        override val userId: Int,
-        val journalName: String,
-        val date: String
-    ) : Attachment {
-        override fun infoAsFun(): String {
-            return super.infoAsFun() + ", journal: $journalName, date: $date"
-        }
-    }
+        // Остальные классы не включил
 
-    class BookAttachment(
-        override val id: Int,
-        override val albumId: Int,
-        override val ownerId: Int,
-        override val userId: Int,
-        val author: String,
-        val bookName: String,
-    ) : Attachment {
-        override fun infoAsFun(): String {
-            return super.infoAsFun() + ", author: $author, book: $bookName"
+        fun infoAsFun(type: Attachment) = when (type) {
+            is Video -> {
+                println("Type: $type.class, id: $type.id, owner_id: $type.ownerId, title: $type.title, " +
+                        "description: $type.description, duration: $type.duration, image: $type.image" +
+                        "first_name: $type.firstName")
+            }
+            is Audio -> {
+                println("Type: $type.class, id: $type.id, owner_id: $type.ownerId, artist: $type.artist, " +
+                        "title: $type.title, duration: $type.duration, url: $type.url")
+            }
+            is Photo -> {
+                println(
+                    "Type: $type.class, id: $type.id, album_id: $type.albumId, owner_id: $type.ownerId, " +
+                            "user_id: $type.userId, text: $type.text, date: $type.date, sizes: $type.sizes, " +
+                            "width: $type.width," + "height: $type.height"
+                )
+            }
+            is Doc -> {
+                println("Type: $type.class, id: $type.id, owner_id: $type.ownerId, title: $type.title, " +
+                        "size: $type.size, ext: $type.ext, url: $type.utl, date: $type.date, file: $type.fType  "
+                )
+            }
         }
     }
 }
